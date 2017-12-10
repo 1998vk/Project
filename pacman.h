@@ -1,5 +1,4 @@
-#ifndef Pacman_H
-#define Pacman_H
+#pragma once
 
 #include <QObject>
 #include <QGraphicsItem>
@@ -27,5 +26,3 @@ private:
     int rotation;
     int countForSteps;  // Счётчик для отсчета тиков таймера, когда мы нажимали на кнопки
 };
-
-#endif // Pacman_H

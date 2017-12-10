@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>477</width>
-    <height>359</height>
+    <width>900</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,21 +18,23 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
-     <height>600</height>
+     <width>905</width>
+     <height>605</height>
     </rect>
    </property>
-   <property name="minimumSize">
-    <size>
-     <width>100</width>
-     <height>100</height>
-    </size>
+   <property name="font">
+    <font>
+     <stylestrategy>NoAntialias</stylestrategy>
+    </font>
    </property>
-   <property name="maximumSize">
-    <size>
-     <width>1000</width>
-     <height>1000</height>
-    </size>
+   <property name="tabletTracking">
+    <bool>false</bool>
+   </property>
+   <property name="interactive">
+    <bool>true</bool>
+   </property>
+   <property name="renderHints">
+    <set>QPainter::TextAntialiasing</set>
    </property>
   </widget>
  </widget>

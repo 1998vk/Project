@@ -24,10 +24,10 @@ private:
     Ui::Widget      *ui;
     QGraphicsScene  *scene;
     Pacman          *pacman;
-    QTimer          *timer;     /* Объявляем игровой таймер, благодаря которому
+   // Ghost           *ghost;
+    QTimer          *timer;       /* Объявляем игровой таймер, благодаря которому
                                   будут производиться изменения положения объекта на сцене
                                   При нажатии клавиш
                                 */
 };
-
 #endif // WIDGET_H

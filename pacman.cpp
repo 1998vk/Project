@@ -26,6 +26,23 @@ void Pacman::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 
     if(rotation == 0)
     {
+        setTransformOriginPoint(transformOriginPoint());
+    }
+    if(rotation == 1)
+    {
+        setTransformOriginPoint(transformOriginPoint());
+        painter->rotate(-90);
+    }
+    if(rotation == 2)
+    {
+        setTransformOriginPoint(transformOriginPoint());
+        painter->rotate(180);
+    }
+    if(rotation == 3)
+    {
+        setTransformOriginPoint(transformOriginPoint());
+        painter->rotate(90);
+    }
         if(steps == 0)
         {
            painter->setPen(QPen(Qt::black, 2));
@@ -38,52 +55,6 @@ void Pacman::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
            painter->setBrush(Qt::black);
            painter->drawPie(-15,-10, 25, 20, -15 * 16, 30 * 16);
         }
-    }
-    if(rotation == 1) // TODO: сделать тру положение рта не только в правом положении
-    {
-        if(steps == 0)
-        {
-           painter->setPen(QPen(Qt::black, 2));
-           painter->setBrush(Qt::black);
-           painter->drawPie(-10,-10, 20, 20, 60 * 16, 60 * 16);
-        }
-        if(steps == 1)
-        {
-           painter->setPen(QPen(Qt::black, 2));
-           painter->setBrush(Qt::black);
-           painter->drawPie(-10,-10, 20, 20, 75 * 16, 30 * 16);
-        }
-    }
-    if(rotation == 2)
-    {
-        if(steps == 0)
-        {
-           painter->setPen(QPen(Qt::black, 2));
-           painter->setBrush(Qt::black);
-           painter->drawPie(-10,-10, 20, 20, 150 * 16, 60 * 16);
-        }
-        if(steps == 1)
-        {
-           painter->setPen(QPen(Qt::black, 2));
-           painter->setBrush(Qt::black);
-           painter->drawPie(-10,-10, 20, 20, 165 * 16, 30 * 16);
-        }
-    }
-    if(rotation == 3)
-    {
-        if(steps == 0)
-        {
-           painter->setPen(QPen(Qt::black, 2));
-           painter->setBrush(Qt::black);
-           painter->drawPie(-10,-10, 20, 20, 240 * 16, 60 * 16);
-        }
-        if(steps == 1)
-        {
-           painter->setPen(QPen(Qt::black, 2));
-           painter->setBrush(Qt::black);
-           painter->drawPie(-10,-10, 20, 20, 255 * 16, 30 * 16);
-        }
-    }
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }
@@ -145,4 +116,3 @@ void Pacman::slotGameTimer()
         this->setY(240);
     }
 }
-
