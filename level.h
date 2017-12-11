@@ -3,10 +3,9 @@
 class Level
 {
 public :
-    static const int width = 32;
-    static const int height = 28;
+    const int wight = 32;
+    const int hight = 28;
     int createflag;
-    char map[width][height];
 private:
-    void create ();
-};
+    create Level();
+}
