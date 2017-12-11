@@ -1,6 +1,9 @@
 #include "pacman.h"
 #include "widget.h"
 #include "ui_widget.h"
+#include <QLabel>
+#include <windows.h>
+
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
@@ -30,11 +33,12 @@ Widget::Widget(QWidget *parent) :
     scene->addLine( 320,-260, 320, 260, QPen(Qt::white));
 
     scene->addItem(pacman);
-    pacman->setPos(0,0);
+    pacman->setPos(0,0);// НЕЗАБЫТЬУБРАТЬЭТО!!!
 
     /* Инициализируем таймер и вызываем слот обработки сигнала таймера
      * 20 раз в секунду.
      * */
+    QLabel *label = new QLabel("<font color=\"white\">white text</font>");
     timer = new QTimer();
     connect(timer, &QTimer::timeout, pacman, &Pacman::slotGameTimer);
     timer->start(1000 / 50);
