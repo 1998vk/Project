@@ -10,6 +10,11 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>48</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Widget</string>
   </property>
@@ -24,6 +29,7 @@
    </property>
    <property name="font">
     <font>
+     <pointsize>48</pointsize>
      <stylestrategy>NoAntialias</stylestrategy>
     </font>
    </property>

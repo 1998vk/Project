@@ -61,29 +61,32 @@ void Pacman::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 
 void Pacman::slotGameTimer()
 {
-    // Проверяем, нажата ли была какая-либо из кнопок управления объектом.
+    // Поворачиваем персонажа, если нажата клавиша
 
     if(GetAsyncKeyState(VK_LEFT) ||
        GetAsyncKeyState(VK_RIGHT) ||
        GetAsyncKeyState(VK_UP) ||
        GetAsyncKeyState(VK_DOWN))
     {
-        if(GetAsyncKeyState(VK_LEFT)){
-            setPos(mapToParent(-2, 0));
+        if(GetAsyncKeyState(VK_LEFT))
             rotation = 2;
-        }
-        if(GetAsyncKeyState(VK_RIGHT)){
-            setPos(mapToParent(2, 0));
+        if(GetAsyncKeyState(VK_RIGHT))
             rotation = 0;
-        }
-        if(GetAsyncKeyState(VK_UP)){
-            setPos(mapToParent(0, -2));
+        if(GetAsyncKeyState(VK_UP))
             rotation = 1;
-        }
-        if(GetAsyncKeyState(VK_DOWN)){
-            setPos(mapToParent(0, 2));
+        if(GetAsyncKeyState(VK_DOWN))
             rotation = 3;
-        }
+    }
+        //И после этого(!) двигаем туда, куда он смотрит теперь
+
+        if(2 == rotation)
+            setPos(mapToParent(-2, 0));
+        if(0 == rotation)
+            setPos(mapToParent(2, 0));
+        if(1 == rotation)
+            setPos(mapToParent(0, -2));
+        if(3 == rotation)
+            setPos(mapToParent(0, 2));
 
         countForSteps++;
         if(countForSteps == 4){
@@ -100,19 +103,18 @@ void Pacman::slotGameTimer()
             update(QRectF(-10,-10,20,20));
             countForSteps = 0;
         }
+
+    if(this->x() - 10 < -320){
+        this->setX(-310);
+    }
+    if(this->x() + 10 > 320){
+        this->setX(310);
     }
 
-    if(this->x() - 10 < -250){
-        this->setX(-240);
+    if(this->y() - 10 < -260){
+        this->setY(-250);
     }
-    if(this->x() + 10 > 250){
-        this->setX(240);
-    }
-
-    if(this->y() - 10 < -250){
-        this->setY(-240);
-    }
-    if(this->y() + 10 > 250){
-        this->setY(240);
+    if(this->y() + 10 > 260){
+        this->setY(250);
     }
 }

@@ -36,3 +36,6 @@ HEADERS += \
 
 FORMS += \
         widget.ui
+
+DISTFILES += \
+    1.txt

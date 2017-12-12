@@ -1,6 +1,10 @@
 #include "pacman.h"
 #include "widget.h"
 #include "ui_widget.h"
+#include <QLabel>
+#include <windows.h>
+#include "level.h"
+
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
@@ -20,24 +24,19 @@ Widget::Widget(QWidget *parent) :
 
     scene->setSceneRect(-450,-300,900,600); // Устанавливаем область графической сцены
     scene->setBackgroundBrush(Qt::black);
+    Level *level = new Level;
+    level->create(this);
+   // scene->addLine(-250,0,250,0,QPen(Qt::white));   //Линия через центр
+   //scene->addLine(0,-250,0,250,QPen(Qt::white));
 
-    scene->addLine(-250,0,250,0,QPen(Qt::white));   //Линия через центр
-    scene->addLine(0,-250,0,250,QPen(Qt::white));
-
-    scene->addLine(-320,-260, 320,-260, QPen(Qt::white));
-    scene->addLine(-320, 260, 320, 260, QPen(Qt::white));
-    scene->addLine(-320,-260,-320, 260, QPen(Qt::white));
-    scene->addLine( 320,-260, 320, 260, QPen(Qt::white));
+   // scene->addLine(-320,-260, 320,-260, QPen(Qt::blue));
+   // scene->addLine(-320, 260, 320, 260, QPen(Qt::blue));
+   // scene->addLine(-320,-260,-320, 260, QPen(Qt::blue));
+   // scene->addLine( 320,-260, 320, 260, QPen(Qt::blue));
 
     scene->addItem(pacman);
-    pacman->setPos(0,0);
-
-    /* Инициализируем таймер и вызываем слот обработки сигнала таймера
-     * 20 раз в секунду.
-     * */
     timer = new QTimer();
     connect(timer, &QTimer::timeout, pacman, &Pacman::slotGameTimer);
-    timer->start(1000 / 50);
 }
 
 Widget::~Widget()
