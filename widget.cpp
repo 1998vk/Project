@@ -36,7 +36,7 @@ Widget::Widget(QWidget *parent) :
 
     scene->addItem(pacman);
     timer = new QTimer();
-    connect(timer, &QTimer::timeout, pacman, &Pacman::slotGameTimer);
+    connect(timer, &QTimer::timeout, pacman, &Pacman::slotGameTimer(*level));
 }
 
 Widget::~Widget()

@@ -1,4 +1,6 @@
 #include "Pacman.h"
+#include "Level.h"
+#include <stdlib.h>
 
 Pacman::Pacman(QObject *parent) :
     QObject(parent), QGraphicsItem()
@@ -22,7 +24,7 @@ void Pacman::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 {
     painter->setPen(QPen(Qt::yellow, 2));
     painter->setBrush(Qt::yellow);
-    painter->drawEllipse(-10, -10, 20, 20);
+    painter->drawEllipse(-9, -9, 18, 18);
 
     if(rotation == 0)
     {
@@ -47,19 +49,19 @@ void Pacman::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
         {
            painter->setPen(QPen(Qt::black, 2));
            painter->setBrush(Qt::black);
-           painter->drawPie(-15, -10, 25, 20, -30 * 16, 60 * 16);
+           painter->drawPie(-15, -9, 25, 18, -30 * 16, 60 * 16);
         }
         if(steps == 1)
         {
            painter->setPen(QPen(Qt::black, 2));
            painter->setBrush(Qt::black);
-           painter->drawPie(-15,-10, 25, 20, -15 * 16, 30 * 16);
+           painter->drawPie(-15,-9, 25, 18, -15 * 16, 30 * 16);
         }
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }
 
-void Pacman::slotGameTimer()
+void Pacman::slotGameTimer(Level *level)
 {
     // Поворачиваем персонажа, если нажата клавиша
 
@@ -103,8 +105,9 @@ void Pacman::slotGameTimer()
             update(QRectF(-10,-10,20,20));
             countForSteps = 0;
         }
-
-    if(this->x() - 10 < -320){
+//-320 + j * 20, -260 + i * 20//Настроить непускание пакмана в стены
+    if(level->map[((this->x() - this->x() mod 20) + 320) / 20][this->y()] = '1')
+     if(this->x() - 10 < -320){
         this->setX(-310);
     }
     if(this->x() + 10 > 320){

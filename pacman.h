@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <QGraphicsScene>
 #include <windows.h>
+#include "level.h"
 
 class Pacman : public QObject, public QGraphicsItem
 {
@@ -16,7 +17,7 @@ public:
 signals:
 
 public slots:
-    void slotGameTimer();
+    void slotGameTimer(Level *level);
 protected:
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
