@@ -6,6 +6,7 @@
 #include <QGraphicsScene>
 #include <windows.h>
 #include "level.h"
+#include "widget.h"
 
 class Pacman : public QObject, public QGraphicsItem
 {

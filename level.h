@@ -1,4 +1,7 @@
-#pragma once
+//#pragma once
+#ifndef LEVEL_H
+#define LEVEL_H
+
 #include "widget.h"
 
 class Level
@@ -11,3 +14,4 @@ public :
     char map[width][height];
     void create (Widget *w);
 };
+#endif //LEVEL_H
