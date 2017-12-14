@@ -1,6 +1,7 @@
 #include "Pacman.h"
 #include "Level.h"
 #include <stdlib.h>
+#include <math.h>
 
 Pacman::Pacman(QObject *parent) :
     QObject(parent), QGraphicsItem()
@@ -106,18 +107,18 @@ void Pacman::slotGameTimer(Level *level)
             countForSteps = 0;
         }
 //-320 + j * 20, -260 + i * 20//Настроить непускание пакмана в стены
-    if(level->map[((this->x() - this->x() mod 20) + 320) / 20][this->y()] = '1')
-     if(this->x() - 10 < -320){
-        this->setX(-310);
+    if(level->map[((this->x() - (this->x() % 20)) + 320 + 10) / 20][this->y()] = '1')
+    {
+        this->setX(this->x() - 2);
     }
-    if(this->x() + 10 > 320){
-        this->setX(310);
+    if(level->map[((this->x() - (this->x() % 20)) + 320 - 10) / 20][this->y()] = '1'){
+        this->setX(this->x() + 2);
     }
 
-    if(this->y() - 10 < -260){
-        this->setY(-250);
+    if(level->map[this->x()][((this->y() - (this->y() % 20)) + 260 - 10) / 20] = '1'){
+        this->setY(this->y() + 2);
     }
-    if(this->y() + 10 > 260){
-        this->setY(250);
+    if(level->map[this->x()][((this->y() - (this->y() % 20)) + 260 + 10) / 20] = '1'){
+        this->setY(this->y() - 2);
     }
 }

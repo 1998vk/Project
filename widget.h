@@ -5,7 +5,6 @@
 #include <QGraphicsScene>
 #include <QShortcut>
 #include <QTimer>
-
 #include <pacman.h>
 
 namespace Ui {
