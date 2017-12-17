@@ -1,30 +1,29 @@
-#pragma once
+#ifndef PACMAN_H
+#define PACMAN_H
 
 #include <QObject>
 #include <QGraphicsItem>
 #include <QPainter>
 #include <QGraphicsScene>
-#include <windows.h>
-#include "level.h"
-#include "widget.h"
 
 class Pacman : public QObject, public QGraphicsItem
 {
     Q_OBJECT
 public:
+    int rotation;
+    bool pacmanDirection[4];
     explicit Pacman(QObject *parent = 0);
     ~Pacman();
-
 signals:
 
 public slots:
-    void slotGameTimer(Level *level);
+    void slotGameTimer();
 protected:
     QRectF boundingRect() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-
+    void paint(QPainter *painter);
 private:
     int steps;
-    int rotation;
-    int countForSteps;  // Счётчик для отсчета тиков таймера, когда мы нажимали на кнопки
+    int countForSteps;
 };
+
+#endif // PACMAN_H

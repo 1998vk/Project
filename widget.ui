@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Widget</class>
- <widget class="QWidget" name="Widget">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -10,41 +10,23 @@
     <height>600</height>
    </rect>
   </property>
-  <property name="font">
-   <font>
-    <pointsize>48</pointsize>
-   </font>
-  </property>
   <property name="windowTitle">
-   <string>Widget</string>
+   <string>Form</string>
   </property>
   <widget class="QGraphicsView" name="graphicsView">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>905</width>
-     <height>605</height>
+     <width>900</width>
+     <height>600</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>48</pointsize>
-     <stylestrategy>NoAntialias</stylestrategy>
-    </font>
-   </property>
-   <property name="tabletTracking">
-    <bool>false</bool>
-   </property>
-   <property name="interactive">
-    <bool>true</bool>
-   </property>
-   <property name="renderHints">
-    <set>QPainter::TextAntialiasing</set>
+   <property name="cursor" stdset="0">
+    <cursorShape>BlankCursor</cursorShape>
    </property>
   </widget>
  </widget>
- <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>

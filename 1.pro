@@ -24,16 +24,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
-        widget.cpp \
-    pacman.cpp
+    main.cpp \
+    pacman.cpp \
+    widget.cpp
 
 HEADERS += \
-        widget.h \
-    pacman.h
+    pacman.h \
+    widget.h
+
 
 FORMS += \
-        widget.ui
+    widget.ui
 win32-msvc*{
-    LIBS += -luser32
+
 }

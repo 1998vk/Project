@@ -1,7 +1,6 @@
-#include "Pacman.h"
-#include "Level.h"
-#include <stdlib.h>
-#include <math.h>
+#include "pacman.h"
+#include <windows.h>
+
 
 Pacman::Pacman(QObject *parent) :
     QObject(parent), QGraphicsItem()
@@ -9,6 +8,7 @@ Pacman::Pacman(QObject *parent) :
     rotation = 0;
     steps = 0;
     countForSteps = 0;
+    //pacmanDirection = { 1, 0, 1, 0 };
 }
 
 Pacman::~Pacman()
@@ -21,7 +21,7 @@ QRectF Pacman::boundingRect() const
     return QRectF(-10,-10,20,20);
 }
 
-void Pacman::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void Pacman::paint(QPainter *painter/*, const QStyleOptionGraphicsItem *option, QWidget *widget*/)
 {
     painter->setPen(QPen(Qt::yellow, 2));
     painter->setBrush(Qt::yellow);
@@ -58,11 +58,11 @@ void Pacman::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
            painter->setBrush(Qt::black);
            painter->drawPie(-15,-9, 25, 18, -15 * 16, 30 * 16);
         }
-    Q_UNUSED(option);
-    Q_UNUSED(widget);
+   // Q_UNUSED(option);
+   // Q_UNUSED(widget);
 }
 
-void Pacman::slotGameTimer(Level *level)
+void Pacman::slotGameTimer()
 {
     // Поворачиваем персонажа, если нажата клавиша
 
@@ -80,45 +80,38 @@ void Pacman::slotGameTimer(Level *level)
         if(GetAsyncKeyState(VK_DOWN))
             rotation = 3;
     }
-        //И после этого(!) двигаем туда, куда он смотрит теперь
 
-        if(2 == rotation)
-            setPos(mapToParent(-2, 0));
-        if(0 == rotation)
-            setPos(mapToParent(2, 0));
-        if(1 == rotation)
-            setPos(mapToParent(0, -2));
-        if(3 == rotation)
-            setPos(mapToParent(0, 2));
+    if(2 == rotation && pacmanDirection[2])
+        setPos(mapToParent(-2, 0));
+    if(0 == rotation && pacmanDirection[0])
+        setPos(mapToParent(2, 0));
+    if(1 == rotation && pacmanDirection[1])
+        setPos(mapToParent(0, -2));
+    if(3 == rotation && pacmanDirection[3])
+        setPos(mapToParent(0, 2));
 
-        countForSteps++;
-        if(countForSteps == 4){
-            steps = 2;
-            update(QRectF(-10,-10,20,20));
-        } else if (countForSteps == 8){
-            steps = 1;
-            update(QRectF(-10,-10,20,20));
-        } else if (countForSteps == 12){
-            steps = 0;
-            update(QRectF(-10,-10,20,20));
-        } else if (countForSteps == 16) {
-            steps = 1;
-            update(QRectF(-10,-10,20,20));
-            countForSteps = 0;
-        }
-//-320 + j * 20, -260 + i * 20//Настроить непускание пакмана в стены
-    if(level->map[((this->x() - (this->x() % 20)) + 320 + 10) / 20][this->y()] = '1')
+    countForSteps++;
+    if(countForSteps == 4)
     {
-        this->setX(this->x() - 2);
+        steps = 2;
+        update(boundingRect());
     }
-    if(level->map[((this->x() - (this->x() % 20)) + 320 - 10) / 20][this->y()] = '1'){
-        this->setX(this->x() + 2);
+    else if (countForSteps == 8)
+    {
+         steps = 1;
+         update(boundingRect());
+    }
+    else if (countForSteps == 12)
+    {
+         steps = 0;
+         update(boundingRect());
+
+    }
+    else if (countForSteps == 16)
+    {
+         steps = 1;
+         update(boundingRect());
+         countForSteps = 0;
     }
 
-    if(level->map[this->x()][((this->y() - (this->y() % 20)) + 260 - 10) / 20] = '1'){
-        this->setY(this->y() + 2);
-    }
-    if(level->map[this->x()][((this->y() - (this->y() % 20)) + 260 + 10) / 20] = '1'){
-        this->setY(this->y() - 2);
-    }
 }
